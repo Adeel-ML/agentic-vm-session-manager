@@ -1,0 +1,40 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: computer_use
+      POSTGRES_USER: computer_use
+      POSTGRES_PASSWORD: computer_use
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U computer_use -d computer_use"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    image: computer-use-backend:local
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql+asyncpg://computer_use:computer_use@db:5432/computer_use
+      SESSION_WORKER_IMAGE: ${SESSION_WORKER_IMAGE:-computer-use-worker:local}
+      API_PROVIDER: ${API_PROVIDER:-anthropic}
+      DEFAULT_MODEL: ${DEFAULT_MODEL:-claude-sonnet-4-5-20250929}
+      DEFAULT_TOOL_VERSION: ${DEFAULT_TOOL_VERSION:-computer_use_20250124}
+      DEFAULT_WIDTH: ${DEFAULT_WIDTH:-1024}
+      DEFAULT_HEIGHT: ${DEFAULT_HEIGHT:-768}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "8000:8000"
+
+volumes:
+  pgdata:

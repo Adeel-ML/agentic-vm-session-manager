@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Computer Use Session Manager</title>
+        <link rel="stylesheet" href="/static/styles.css" />
+        <script defer src="/static/app.js"></script>
+    </head>
+    <body>
+        <div class="shell-bg"></div>
+        <main class="layout">
+            <aside class="panel panel-left">
+                <header>
+                    <h1>Task History</h1>
+                    <div class="task-actions">
+                        <button id="new-session-btn" type="button">Start New Task</button>
+                        <button id="clear-sessions-btn" type="button" class="secondary-btn">
+                            Clear All
+                        </button>
+                    </div>
+                </header>
+                <ul id="session-list" class="session-list"></ul>
+            </aside>
+
+            <section class="panel panel-middle">
+                <header>
+                    <h2>Virtual Machine</h2>
+                    <p id="vm-meta">No session selected</p>
+                </header>
+                <iframe
+                    id="vnc-frame"
+                    title="noVNC"
+                    src="about:blank"
+                    allow="fullscreen"
+                ></iframe>
+            </section>
+
+            <section class="panel panel-right">
+                <div class="chat-column">
+                    <header>
+                        <h2>Session Events</h2>
+                        <p id="run-status">Idle</p>
+                    </header>
+                    <div id="messages" class="messages"></div>
+                    <form id="composer" autocomplete="off">
+                        <input
+                            id="prompt-input"
+                            type="text"
+                            placeholder="Send task prompt..."
+                            required
+                        />
+                        <button type="submit">Send</button>
+                    </form>
+                </div>
+                <div class="files-column">
+                    <header>
+                        <h3>File Management</h3>
+                    </header>
+                    <p>
+                        Placeholder area for generated files, downloads, and artifacts.
+                    </p>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>
