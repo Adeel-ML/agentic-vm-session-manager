@@ -57,3 +57,4 @@
 2022-09-13T11:00:12 Tweak logging verbosity
 2022-11-04T13:05:40 Tighten auth middleware
 2022-12-23T08:23:59 Improve error handling
+2023-07-13T17:08:33 Harden input sanitization
