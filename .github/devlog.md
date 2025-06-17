@@ -65,3 +65,4 @@
 2024-06-04T12:04:01 Remove dead code paths
 2024-06-21T13:58:27 Update documentation
 2024-11-04T08:56:34 Resolve merge conflict artifacts
+2025-06-17T15:20:16 Harden input sanitization
