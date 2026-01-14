@@ -70,3 +70,4 @@
 2025-11-03T10:06:39 Tighten auth middleware
 2025-11-19T08:00:37 Clean up imports
 2025-11-28T19:10:29 Harden input sanitization
+2026-01-13T18:39:08 Fix edge case in handler
